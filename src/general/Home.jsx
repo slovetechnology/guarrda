@@ -159,6 +159,9 @@ function Home() {
                     <div className="text-zinc-100 text-center text-base lg:text-2xl">Guarda is an ultimate solution for modern crypto management. You can do it all from the comfort of one
                         single app. Earn with staking, Purchase, Instantly Exchange at best rates, get crypto loans, add extra
                         security layer with Multisignature, and the list goes on.</div>
+                        <div className="w-fit mx-auto mt-10">
+                            <Link to='/app' className='py-4 px-5 rounded-lg text-2xl bg-white'>Get Started</Link>
+                        </div>
                 </div>
             </div>
         </div>
