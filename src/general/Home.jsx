@@ -292,11 +292,11 @@ function Home() {
                     {FooterLastlinkings.map((item, index) => (
                         <div key={index}>
                             <div className={`py-3 text-zinc-600 text-xl border-b flex items-center justify-between ${!item.title ? 'mt-7' : ''}`}>{item.title}</div>
-                        {views === item.title && <div className="flex flex-col mt-3">
+                        <div className="flex flex-col mt-3">
                             {item.links.map((ele, i) => (
                                 <Link className=' py-2.5 hover:bg-slate-100 rounded-full border border-transparent hover:border-zinc-200 px-2.5 transition-all' key={i}>{ele.title}</Link>
                             ))}
-                        </div>}
+                        </div>
                         </div>
                     ))}
                 </div>
