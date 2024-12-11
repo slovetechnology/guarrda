@@ -4,7 +4,7 @@ import { BannerInitLinks, HomeHeaderLinks } from '../utils/utils'
 import { FaBars, FaBell, FaStar } from 'react-icons/fa6'
 import gimg30 from "assets/gimg30.webp"
 import gimg29 from "assets/gimg29.svg"
-import { SlGrid } from 'react-icons/sl'
+import { SlGrid, SlMagnifier } from 'react-icons/sl'
 import { IoIosStar } from 'react-icons/io'
 import gimg26 from "assets/gimg26.png"
 import gimg27 from "assets/gimg27.png"
@@ -138,7 +138,29 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="mt-16 lg:mt-24 bg-white py-20"></div>
+            <div className="mt-16 lg:mt-24 bg-white pt-20 pb-48">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="w-11/12 lg:w-4/6 mx-auto lg:ml-auto">
+                        <div className="text-3xl lg:text-5xl font-medium text-black text-center lg:text-left">All Assets In</div>
+                        <div className="text-3xl lg:text-5xl font-medium text-black text-center lg:text-left">One Multi Crypto Wallet</div>
+                    </div>
+                    <div className="w-11/12 mx-auto">
+                        <div className="text-base lg:text-2xl text-center lg:text-left mb-5">Support for over 70+ major block chains and over 400k tokens of all leading protocols. Stay in complete control of your assets.</div>
+                        <div className="flex items-center border border-mainblue py-1 px-3 rounded-lg">
+                            <SlMagnifier />
+                            <input type="text" placeholder='Type name or ticker, e.g. BTC' className="w-full p-3 bg-transparent outline-transparent text-xl" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="bg-mainblue py-20">
+                <div className="w-11/12 mx-auto lg:w-4/5">
+                    <div className="text-center text-[2.5rem] lg:text-[6rem] text-white font-semibold lg:font-bold">Be In Charge of Your Crypto</div>
+                    <div className="text-zinc-100 text-center text-base lg:text-2xl">Guarda is an ultimate solution for modern crypto management. You can do it all from the comfort of one
+                        single app. Earn with staking, Purchase, Instantly Exchange at best rates, get crypto loans, add extra
+                        security layer with Multisignature, and the list goes on.</div>
+                </div>
+            </div>
         </div>
     )
 }
