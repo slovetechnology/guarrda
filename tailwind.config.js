@@ -13,6 +13,7 @@ export default {
         "bgdown": "#424242",
         "maindark": "#222223",
         "subdark": "#303132",
+        "mainblue": "#4489ff",
       }
     },
   },

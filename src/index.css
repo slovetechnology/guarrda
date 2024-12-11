@@ -117,7 +117,9 @@
 }
 
 }
-
+.bg-home {
+  background: linear-gradient(109.6deg, #3d36b3 6.42%, #2bbaf4 97.82%);
+}
 .backup1 {
   background: url(./assets/gimg19.svg)center/contain no-repeat;
 }

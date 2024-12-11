@@ -1,3 +1,4 @@
+import Home from "./src/general/Home";
 import BackUp from "./src/user/BackUp";
 import BuyCrypto from "./src/user/BuyCrypto";
 import BuySell from "./src/user/BuySell";
@@ -13,6 +14,10 @@ import SellCrypto from "./src/user/SellCrypto";
 import Settings from "./src/user/Settings";
 import TransactionHistory from "./src/user/TransactionHistory";
 
+
+export const GeneralRouting = [
+    {path: '/', element: Home}
+]
 
 
 export const UserRouting = [
