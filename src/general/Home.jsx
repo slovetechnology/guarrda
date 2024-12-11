@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BannerInitLinks, HomeHeaderLinks } from '../utils/utils'
+import { BannerInitLinks, FooterLastlinkings, FooterLastlinkings2, HomeHeaderLinks } from '../utils/utils'
 import { FaApple, FaBars, FaBell, FaFacebook, FaGithub, FaGooglePlay, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa6'
 import { FaTelegramPlane, FaMedium } from "react-icons/fa"
 import { SiAppgallery, SiSteemit } from "react-icons/si"
@@ -8,7 +8,7 @@ import { PiDropHalfBottomLight } from "react-icons/pi"
 import { BsEnvelopeCheckFill } from "react-icons/bs"
 import gimg30 from "assets/gimg30.webp"
 import gimg29 from "assets/gimg29.svg"
-import { SlGrid, SlMagnifier } from 'react-icons/sl'
+import { SlArrowDown, SlGrid, SlMagnifier } from 'react-icons/sl'
 import { IoIosStar, IoLogoReddit } from 'react-icons/io'
 import gimg26 from "assets/gimg26.png"
 import gimg27 from "assets/gimg27.png"
@@ -17,10 +17,19 @@ import vid from "assets/vid.webm"
 
 function Home() {
     const [cookies, setCookies] = useState(true)
+    const [views, setViews] = useState(null)
+
+    function HandleViews(item) {
+        if(views !== item) {
+            setViews(item)
+        }else {
+            setViews('')
+        }
+    }
     return (
         <div className='bg-[#eaf2ff]'>
             {/* cookie */}
-            {cookies && <div className="fixed bottom-5 left-5 bg-white rounded-xl text-lg text-slate-500 font-light p-8 w-[20rem]">
+            {cookies && <div className="fixed bottom-5 z-10 left-5 bg-white rounded-xl text-lg text-slate-500 font-light p-8 w-[20rem]">
                 We use cookies to ensure you get the best experience. For more detailed information about the cookies we use, see our <Link to="" className='text-blue-500'>Privacy Policy.</Link>
                 <div className='mt-3'>
                     <button onClick={() => setCookies(false)} className="bg-blue-500 text-white px-8 py-2 block w-full rounded-md">OK</button>
@@ -269,6 +278,39 @@ function Home() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="bg-slate-50 pt-10 pb-20">
+                <div className="lg:hidden">
+                    <div className="grid grid-cols-3 text-center gap-10 text-black text-3xl w-4/5 mx-auto mb-5">
+                        <Link className='text-center w-fit mx-auto'> <FaApple /> </Link>
+                        <Link className='text-center w-fit mx-auto'> <FaGooglePlay /> </Link>
+                        <Link className='text-center w-fit mx-auto'> <SiAppgallery /> </Link>
+                    </div>
+                </div>
+                <div className="hidden lg:grid grid-cols-1 lg:grid-cols-5 gap-5 w-11/12 mx-auto lg:w-10/12">
+                    {FooterLastlinkings.map((item, index) => (
+                        <div key={index}>
+                            <div className={`py-3 text-zinc-600 text-xl border-b flex items-center justify-between ${!item.title ? 'mt-7' : ''}`}>{item.title}</div>
+                        {views === item.title && <div className="flex flex-col mt-3">
+                            {item.links.map((ele, i) => (
+                                <Link className=' py-2.5 hover:bg-slate-100 rounded-full border border-transparent hover:border-zinc-200 px-2.5 transition-all' key={i}>{ele.title}</Link>
+                            ))}
+                        </div>}
+                        </div>
+                    ))}
+                </div>
+                <div className="grid lg:hidden grid-cols-1 lg:grid-cols-5 gap-5 w-11/12 mx-auto lg:w-10/12">
+                    {FooterLastlinkings2.map((item, index) => (
+                        <div key={index}>
+                            <div onClick={() => HandleViews(item.title)} className={`py-3 text-zinc-600 text-xl border-b flex items-center justify-between ${!item.title ? 'mt-7' : ''}`}>{item.title} <SlArrowDown className='cursor-pointer lg:hidden' /> </div>
+                        {views === item.title && <div className="flex flex-col mt-3">
+                            {item.links.map((ele, i) => (
+                                <Link className=' py-2.5 hover:bg-slate-100 rounded-full border border-transparent hover:border-zinc-200 px-2.5 transition-all' key={i}>{ele.title}</Link>
+                            ))}
+                        </div>}
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
