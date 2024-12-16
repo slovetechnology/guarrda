@@ -8,12 +8,17 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
 import {store} from "./store/store"
+import '@mantine/core/styles.css';
+
+import { MantineProvider } from '@mantine/core';
 
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
    <Provider store={store}>
+   <MantineProvider>
    <App />
+   </MantineProvider>
    </Provider>
   </StrictMode>,
 )

@@ -50,9 +50,9 @@ function Home() {
                         </svg>
                     </Link>
                     <div className="lg:hidden hover:bg-zinc-100 p-2"> <FaBars className='cursor-pointer text-3xl' /> </div>
-                    <div className="hidden lg:flex flex-row items-center gap-8 lg:gap-10">
+                    <div className="hidden lg:flex flex-row items-center gap-4 md:gap-6 lg:gap-10">
                         {HomeHeaderLinks.map((item, index) => (
-                            <Link key={index} className=' py-2 px-4 text-base hover:bg-mainblue/10 transition-all rounded-lg' to="">{item.title}</Link>
+                            <Link key={index} className=' py-2 px-4 truncate text-base hover:bg-mainblue/10 transition-all rounded-lg' to="">{item.title}</Link>
                         ))}
                         <div className="bg-slate-200 text-white hover:bg-mainblue text-xl rounded-full p-1.5 cursor-pointer">
                             <FaBell />

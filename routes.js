@@ -1,3 +1,11 @@
+import AHome from "./src/admin/AHome";
+import ACurrency from "./src/admin/currencies/ACurrency";
+import AEarnings from "./src/admin/earnings/AEarnings";
+import ASettings from "./src/admin/settings/ASettings";
+import AUsers from "./src/admin/user/AUsers";
+import AWallets from "./src/admin/wallets/AWallets";
+import RestorewalletForm from "./src/forms/RestorewalletForm";
+import Signup from "./src/forms/Signup";
 import Home from "./src/general/Home";
 import BackUp from "./src/user/BackUp";
 import BuyCrypto from "./src/user/BuyCrypto";
@@ -19,8 +27,19 @@ export const GeneralRouting = [
     {path: '/', element: Home}
 ]
 
+export const AdminRouting = [
+    {path: '/', element: AHome},
+    {path: '/wallets', element: AWallets},
+    {path: '/currencies', element: ACurrency},
+    {path: '/users', element: AUsers},
+    {path: '/settings', element: ASettings},
+    {path: '/earnings', element: AEarnings},
+]
+
 
 export const UserRouting = [
+    {path: '/create', element: Signup},
+    {path: '/restore', element: RestorewalletForm},
     {path: '', element: Dashboard},
     {path: '/buy', element: BuySell},
     {path: '/exchange', element: Exchange},

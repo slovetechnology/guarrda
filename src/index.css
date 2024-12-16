@@ -5,7 +5,7 @@
 
 .input {
     width: 100%;
-    padding: 0.875rem;
+    padding: 0.6rem;
     border-radius: 0.375rem;
     outline: none;
   }
@@ -65,6 +65,7 @@
 
   animation: lds-ellipsis1 0.4s infinite;
 }
+
 
 .lds-ellipsis div:nth-child(2) {
   left: 8px;

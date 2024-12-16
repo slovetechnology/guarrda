@@ -41,7 +41,7 @@ const Forminput = forwardRef(({ valueName, setup, setValue, valueText, disabledD
                         setValue(valueName, val)
                     }}
                 />}
-            {error && <div className='text-red-700'>{errorMessage}</div>}
+            {error && <div className='text-red-700 text-sm'>{errorMessage}</div>}
         </div>
     )
 })
