@@ -36,11 +36,11 @@ function Loan() {
                         <div className="w-11/12 mx-auto">
                             <div className=" dark:text-zinc-200 font-bold text-2xl mb-5">Loan Crypto</div>
                             <div className="mb-10">
-                                <ChainBox readOnly={false} />
+                            <ChainBox tag="coin" readOnly={true} balance={true} title="Collateral amount" />
                                 <div className="text-xs text-right mt-1 dark:text-zinc-400">Min | All</div>
                             </div>
                             <div className="mb-10">
-                                <ChainBox textColor="text-primary" readOnly={true} />
+                            <ChainBox tag="coin" readOnly={true} balance={true} title="I want to borrow" />
                                 <div className="flex items-center justify-end gap-2 mt-3">
                                     <div className="flex items-center gap-1 text-sm mr-10">
                                         LTV<SlExclamation />

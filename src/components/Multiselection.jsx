@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FaCaretDown } from 'react-icons/fa6'
 import { Menu, Button } from '@mantine/core';
+import { useSelector } from 'react-redux';
 
 function Multiselection({ Options, error, LoadContent, defaultValue, contentValue, source }) {
     const getDefaultValue = Options.find(ele => ele.short === defaultValue)
@@ -10,6 +11,7 @@ function Multiselection({ Options, error, LoadContent, defaultValue, contentValu
     const [text, setText] = useState('')
     const [values, setValues] = useState(Options || [])
     const [img, setImg] = useState(getDefaultValueImage?.image ?? null)
+    const {theme} = useSelector(state => state.data)
 
     function ManageCurrent(item) {
         const getSource = source.find(ele => ele.short === item.short)
@@ -36,25 +38,25 @@ function Multiselection({ Options, error, LoadContent, defaultValue, contentValu
             <Menu shadow="md" classNames='relative p-0 mt-20' width={"25rem"} opened={opened} onChange={setOpened}>
                 <Menu.Target>
                     <div>
-                        <div className={`border ${error ? 'border-red-500' : 'border-zinc-300'} bg-white rounded-md grid grid-cols-2 items-center py-3 px-2 cursor-pointer`}>
+                        <div className={`border ${error ? 'border-red-500' : 'border-zinc-300'} bg-white dark:bg-maindark/40 dark:border-maindark rounded-md grid grid-cols-2 items-center py-3 px-2 cursor-pointer`}>
                             {content?.short ? <div className='flex items-center gap-2'> {img && <img src={img} alt="" className="size-7" />} {content.short} </div> :
-                                <div className='flex items-center gap-2'>  <div><div className="size-7 rounded-full bg-primary"></div> </div> <div className="w-full h-4 bg-slate-300 rounded-sm"></div> </div>}
+                                <div className='flex items-center gap-2'>  <div><div className="size-7 rounded-full bg-primary dark:bg-primary dark:bg-primary/30"></div> </div> <div className="w-full h-4 bg-slate-300 dark:bg-slate-700 rounded-sm"></div> </div>}
                             <div className="text-sm w-fit ml-auto"> <FaCaretDown /> </div>
                         </div>
                         {error && <div className="text-sm text-red-500">{error}</div>}
                     </div>
                 </Menu.Target>
 
-                <Menu.Dropdown className='p-0 h-[18rem]'>
+                <Menu.Dropdown className='p-0 h-[18rem]' style={{background: theme === 'dark' ? '#222223' : "#fff", border: theme === 'dark' ? "1px solid #222223" : '', color: theme === 'dark' ? 'white' : ''}}>
                     <div>
-                        <input value={text} onChange={HandleSearch} type="text" className="border-b outline-none p-2 text-sm w-full block" placeholder='search' />
-                        <div className="text-sm text-slate-500 p-3">Countries</div>
+                        <input value={text} onChange={HandleSearch} type="text" className="border-b bg-transparent dark:!border-maindark outline-none p-2 text-sm w-full block" placeholder='search' />
+                        <div className="text-sm text-slate-500 dark:text-slate-200 p-3">Countries</div>
                     </div>
                     <div className="h-[12.5rem] overflow-y-auto scrolls">
                         {values.map((item, index) => {
                             const imageIcon = source.find(ele => ele.short === item.short)?.image ?? null
                             return (
-                                <div onClick={() => ManageCurrent(item)} key={index} className="py-1.5 px-2 hover:bg-zinc-100 cursor-pointer rounded-md flex items-center gap-2">
+                                <div onClick={() => ManageCurrent(item)} key={index} className={`py-1.5 px-2 ${theme === 'dark' ? 'hover:bg-subdark' : 'hover:bg-zinc-100'} cursor-pointer rounded-md flex items-center gap-2`}>
                                    {imageIcon && <img src={imageIcon} alt="" className="size-9" /> }{item.short}
                                 </div>
                             )

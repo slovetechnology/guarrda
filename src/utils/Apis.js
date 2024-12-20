@@ -24,9 +24,16 @@ const admin_urls = {
     all_earnings: "admin/earn/all",
 }
 
+const user_urls = {
+    register: "user/register",
+    login: "user/login",
+    profile: "user/profile",
+}
+
 
 export const Apis = {
     admin: admin_urls,
+    user: user_urls,
 }
 
 export const Posturl = async (endpoint, data) => {

@@ -22,7 +22,7 @@ function Login({HandleLoginAction}) {
                     <div className="text-sm text-slate-700 dark:text-slate-300 pb-5">Restore your existing Guarda Wallet, import private key from any other one to create a new Wallet right now!</div>
                     
                     <Formbutton title="Create a new wallet" onClick={() => navigate('/app/create')} />
-                    <Formbutton title="Restore or import" onClick={() => navigate('/app/restore')} className={'bg-transparent !text-primary hover:!bg-transparent mt-5'} />
+                    <Formbutton title="Restore or import" onClick={() => navigate('/app/restore')} className={'bg-transparent border border-transparent hover:!border-primary !text-primary hover:!bg-transparent mt-5'} />
                 </div>
                 <div className="bg-bgdown dark:bg-[#111111] px-9 py-4">
                     {DownLinks2.map((item, index) => (

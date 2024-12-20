@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { SiteName, TrackCode, UserHeaderNavs, UserHeaderNavsLocal } from '../../utils/utils'
+import React, { useCallback, useEffect, useState } from 'react'
+import { returnError, SiteName, tokenName, TrackCode, UserHeaderNavs, UserHeaderNavsLocal } from '../../utils/utils'
 import { Link, useLocation } from 'react-router-dom'
 import logo from "assets/glogo.svg"
 import { AiFillQuestionCircle } from "react-icons/ai";
@@ -9,9 +9,12 @@ import { FaHome, FaUnlock } from "react-icons/fa";
 import UserFooter from './UserFooter';
 import Login from '../../forms/Login';
 import { useDispatch, useSelector } from 'react-redux';
-import { dispatchTheme } from '../../store/reducer';
+import { dispatchLogin, dispatchMoney, dispatchMonies, dispatchProfile, dispatchTheme, dispatchWallets } from '../../store/reducer';
 import { SlMenu } from "react-icons/sl"
 import { PiX } from "react-icons/pi"
+import { Apis, Authgeturl } from '../../utils/Apis';
+import Cookies from 'js-cookie'
+import { isExpired } from "react-jwt"
 
 
 const ExcludedRoutes = [
@@ -22,9 +25,8 @@ const ExcludedRoutes = [
 
 function UserLayout({ children }) {
     const { pathname } = useLocation()
-    const [login, setlogin] = useState(false)
     const dispatch = useDispatch()
-    const { theme } = useSelector(state => state.data)
+    const { theme, isLogin } = useSelector(state => state.data)
     const [view, setView] = useState(false)
     const Viewicon = view ? PiX : SlMenu
     const LocalTrack = localStorage.getItem(TrackCode)
@@ -32,28 +34,56 @@ function UserLayout({ children }) {
 
 
     useEffect(() => {
-        if(!LocalTrack) {
+        if (!LocalTrack) {
             localStorage.setItem(TrackCode, "null")
         }
     }, [])
+
+    const FetchProfile = useCallback(async () => {
+        try {
+            const token = Cookies.get(tokenName)
+            if (!token) return dispatch(dispatchLogin(2))
+            const exp = isExpired(token)
+            if (exp) return dispatch(dispatchLogin(2))
+            const response = await Authgeturl(Apis.user.profile)
+            if (response.status === 200) {
+                dispatch(dispatchLogin(1))
+                dispatch(dispatchProfile(response.data))
+                dispatch(dispatchWallets(response.wallets))
+                dispatch(dispatchMonies(response.currs))
+                dispatch(dispatchMoney(response.currs[0]))
+            } else {
+                dispatch(dispatchLogin(2))
+            }
+        } catch (error) {
+            returnError(error)
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchProfile()
+    }, [FetchProfile])
 
     function ToggleMode(theme) {
         dispatch(dispatchTheme(theme))
     }
 
     function HandleLoginAuthAction() {
-        setlogin(false)
+        dispatch(dispatchProfile({}))
+        Cookies.remove(tokenName)
+        dispatch(dispatchLogin(2))
         closeview()
     }
     function HandleLoginAction() {
-        setlogin(true)
+        FetchProfile()
+        dispatch(dispatchLogin(1))
         closeview()
     }
 
     function closeview() {
         setView(false)
     }
-    if (!login) return (
+    if (isLogin === 2) return (
         <div>
             <div className="bg-white dark:bg-subdark sticky top-0 left-0 w-full z-20">
                 <div className="flex flex-row items-center justify-between lg:justify-center p-2 lg:p-0 gap-3 w-11/12 mx-auto lg:w-10/12">
@@ -89,7 +119,7 @@ function UserLayout({ children }) {
             <UserFooter />
         </div>
     )
-    if (login) return (
+    if (isLogin === 1) return (
         <div>
             <div className="bg-white dark:bg-subdark sticky top-0 left-0 w-full z-20">
                 <div className="flex flex-row items-center justify-between lg:justify-center gap-3 w-11/12 p-3 lg:p-0 mx-auto lg:w-10/12">

@@ -11,6 +11,7 @@ export default {
         "primary": "#7090ea",
         "bg": "#f1f2fa",
         "bgdown": "#424242",
+        "thickdark": "#151515",
         "maindark": "#222223",
         "subdark": "#303132",
         "mainblue": "#4489ff",
